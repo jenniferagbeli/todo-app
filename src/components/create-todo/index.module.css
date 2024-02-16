@@ -1,0 +1,17 @@
+
+.createTodoSection{
+    position: absolute;
+    top: 100px;
+    width: 60%;
+    left: 21%;
+    background-color: white;
+    /* height: 35px; */
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+}
+
+.createTodoInput{
+width: 100%;
+border: none;
+}
