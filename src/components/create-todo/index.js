@@ -1,31 +1,42 @@
 import styles from "./index.module.css";
+import { useLocalStorage } from "usehooks-ts";
+import { useState } from "react";
 
 function CreateTodo() {
-  
-  let todo;
+  const [todos, setTodos] = useLocalStorage("TODO_KEY", []);
 
-function collectInput(event) {
-  todo = event.target.value;
-        }
+  // let todo;
+  const [todo, setTodo] = useState("");
 
-        function saveTodo() {
-          // Get existing list of todus
-          let todos = JSON.parse(localStorage.getItem("TODO_KEY")) || [];
-          // Add new todo to existing list
-          todos.push(todo);
-          // Set all todos in local storage
-  localStorage.setItem("TODO_KEY", JSON.stringify (todos));
-        }
+  // function collectInput(event) {
+  //   // todo = event.target.value;
+  //   setTodo(event.target.value);
+  // }
 
-return (
-      <section className={styles.createTodoSection}>
-        <input
-        onChange={collectInput}
-         className={styles.createTodoInput} 
-         placeholder="Start typing..."/>
-        <button onClick={saveTodo}>Create</button>
-      </section>
-    );
+  //const collectInput = event => setTodo(event.target.value);
+
+  function saveTodo() {
+    // // Add new todo to existing list
+    // todos.push(todo);
+    // Set all todos in local storage
+    console.log(todo);
+    console.log([...todos, todo]);
+
+    // setTodos([...todos, todo]);
   }
-  
-  export default CreateTodo;
+
+  return (
+    <section className={styles.createTodoSection}>
+      <input
+        onChange={event => setTodo(event.target.value)}
+
+        className={styles.createTodoInput}
+        placeholder="Start typing..." />
+      <button 
+      onClick={() => setTodos([...todos, todo])}
+      >Create</button>
+    </section>
+  );
+}
+
+export default CreateTodo;
