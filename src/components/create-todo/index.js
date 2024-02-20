@@ -33,6 +33,7 @@ function CreateTodo() {
         className={styles.createTodoInput}
         placeholder="Start typing..." />
       <button 
+      className={`btn ${styles.btn}`}
       onClick={() => setTodos([...todos, todo])}
       >Create</button>
     </section>
