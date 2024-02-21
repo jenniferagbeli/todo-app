@@ -3,24 +3,21 @@ import {useLocalStorage} from "usehooks-ts";
 import TodoItem from "../todo-item";
 
 function TodoList() {
-  // let todos = ["take fufu", "take ginger"];
   const [todos, setTodos] = useLocalStorage("TODO_KEY", []);
 
-  // function getTodos() {
-  //   // Get all todos from local storage and store it.
-  //   let todos = JSON.parse(localStorage.getItem("TODO_KEY")) || [];
-  //   // update React State
-  //   setTodos(todos);
-  // }
-
-  // useEffect(getTodos, []);
 
     return (
+      <section>
+        <button className="btn btn-danger"
+        onClick={() => setTodos([])}
+        >Clear Todos</button>
+        
       <ul className="list-group" > 
-        {todos.map((todo, index) => {
-           <TodoItem todo={todo} index={index} />;
+        {todos.map(function (todo, index) {
+          return <TodoItem mytodo={todo} myindex={index} />;
         })}
      </ul>
+     </section>
     );
       }
   

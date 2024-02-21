@@ -4,37 +4,28 @@ import { useState } from "react";
 
 function CreateTodo() {
   const [todos, setTodos] = useLocalStorage("TODO_KEY", []);
-
-  // let todo;
   const [todo, setTodo] = useState("");
 
-  // function collectInput(event) {
-  //   // todo = event.target.value;
-  //   setTodo(event.target.value);
-  // }
-
-  //const collectInput = event => setTodo(event.target.value);
-
-  function saveTodo() {
-    // // Add new todo to existing list
-    // todos.push(todo);
-    // Set all todos in local storage
-    console.log(todo);
-    console.log([...todos, todo]);
-
-    // setTodos([...todos, todo]);
+  const saveTodos = () => {
+    //Save all todos
+    setTodos([...todos, todo]);
+    //Wipe the input box
+    setTodo("");
   }
+
 
   return (
     <section className={styles.createTodoSection}>
       <input
+      value={todo}
+        // to make enter functional
+        onKeyDown={event => event.key === "Enter" && saveTodos()}
         onChange={event => setTodo(event.target.value)}
-
         className={styles.createTodoInput}
         placeholder="Start typing..." />
-      <button 
-      className={`btn ${styles.btn}`}
-      onClick={() => setTodos([...todos, todo])}
+      <button
+        className={`btn ${styles.btn}`}
+        onClick={() => saveTodos()}
       >Create</button>
     </section>
   );
