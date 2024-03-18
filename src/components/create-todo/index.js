@@ -7,13 +7,13 @@ function CreateTodo() {
   const saveTodos = async () => {
     //Post todo to the todo-api
     const response = await fetch('http://localhost:4000/todos', {
-      method: 'POST', 
+      method: 'POST',
       body: JSON.stringify({
         title: todo
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    } 
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
     });
     const data = await response.json();
     console.log(data);
@@ -25,7 +25,7 @@ function CreateTodo() {
   return (
     <section className={styles.createTodoSection}>
       <input
-      value={todo}
+        value={todo}
         // to make enter functional
         onKeyDown={event => event.key === "Enter" && saveTodos()}
         onChange={event => setTodo(event.target.value)}
